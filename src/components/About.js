@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div>
 
-      <section id="about" class="about" style={{position:'relative'}}>
+      <section id="about" class="about" style={{position:'relative',padding:0}}>
         <Statistic />
         <div class="container" data-aos="fade-up">
           <div class="row gx-0">
