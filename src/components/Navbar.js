@@ -58,11 +58,12 @@ export default function CustomNavbar() {
       </header> */}
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="index.html">
-            <a href="index.html" class="logo d-flex align-items-center" style={{ textDecoration: 'none' }}>
-              <img src="../img/icon.png" alt="" style={{ height: 40, width: 40,marginInline:20 }} />
+          <Navbar.Brand href="index.html" style={{display:'block'}}>
+            {/* <a href="index.html" class="logo align-items-center" style={{ textDecoration: 'none' }}> */}
+              <img src="../img/icon.png" alt="" style={{ height: 40, width: 40,marginInline:42 }} />
+              <br/>
               <span className='logo-heading libero-font'>LIBERO HEALTH</span>
-            </a>
+            {/* </a> */}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
