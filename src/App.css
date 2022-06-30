@@ -477,7 +477,7 @@ width: 100%;
     display: contents;
   }
   .text-lg-start{
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -488,9 +488,13 @@ width: 100%;
   }
   .hero h1 {
     font-size: 32px;
+    width: 90%;
+    align-self: center;
   }
   .hero h2 {
     font-size: 24px;
+    width: 90%;
+    align-self: center;
   }
   .hero .hero-img img {
     width: 100%;
@@ -1071,4 +1075,17 @@ font-size: 14px;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.navbar-light .navbar-toggler {
+  color: rgb(0 0 0 / 0%)!important;
+  border-color: rgb(0 0 0 / 0%)!important;
+}
+
+.home_jpg{
+  width: 95%;
+    align-self: center;
+}
+.m_title{
+  width: 90%;
+  align-self: center;
 }

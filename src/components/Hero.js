@@ -27,7 +27,7 @@ export default function Hero() {
             <div className="row">
               <Col sm={12} xs={12} md={6}>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center hero11" >
-                  <h1 data-aos="fade-up libero-font">Journey towards your connected health!</h1>
+                  <h1 data-aos="fade-up libero-font">A Journey towards your connected health!</h1>
                   <h2 data-aos="fade-up libero-font" data-aos-delay={400}>
                     A reliable patient-centric ecosystem!
                   </h2>
@@ -65,12 +65,14 @@ export default function Hero() {
 
         <div className="row">
           <div className="col-lg-6 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up libero-font">Journey towards your connected health!</h1>
-            <h2 data-aos="fade-up libero-font" data-aos-delay={400}>
+            <h1 data-aos="fade-up libero-font m_title">A Journey towards your connected health!</h1>
+            <img src={require('../img/home.jpg')} className="home_jpg" alt="" /> <br />
+            {/* <img src="img/phone.png" className="phone" alt="" /> <br /> */}
+            <h2 data-aos="fade-up libero-font m_title" data-aos-delay={400}>
               A reliable patient-centric ecosystem!
             </h2>
 
-            <div data-aos="fade-up" data-aos-delay={600}>
+            {/* <div data-aos="fade-up" data-aos-delay={600}>
               <div className="text-center text-lg-start">
                 <a onClick={() => {
                   document.getElementById('about').scrollIntoView()
@@ -79,7 +81,7 @@ export default function Hero() {
                   <i className="bi bi-arrow-right" />
                 </a>
               </div>
-            </div>
+            </div> */}
 
           </div>
           <div className="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay={200}>

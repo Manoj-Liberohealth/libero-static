@@ -39,7 +39,7 @@ const Provider = () => {
     // }, [scroll])
 
     return (<>
-        <Navbar />
+        
         <Container style={{ marginTop: 150, marginBottom: 100 }}>
             <div class="shadow-none p-3 mb-5 bg-light rounded libero-font" >
               

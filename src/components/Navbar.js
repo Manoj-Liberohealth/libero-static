@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 
 export default function CustomNavbar() {
+
+  const [size, setSize] = useState(window.innerWidth)
+
+  useEffect(() => {
+    let id = document?.getElementById('myVideo')?.play();
+    window.addEventListener('resize', (e) => {
+      console.log(e.currentTarget.innerWidth);
+      setSize(e.currentTarget.innerWidth)
+    });
+  }, [])
+
   return (
     <div >
       {/* <header id="header" class="header fixed-top shadow-xs" style={{  background: '#fff' }} >
@@ -56,13 +67,12 @@ export default function CustomNavbar() {
 
         </div>
       </header> */}
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar collapseOnSelect expand="lg" variant="light" style={{backgroundColor:'#FFF'}}>
         <Container>
-          <Navbar.Brand href="index.html" style={{display:'block'}}>
+          <Navbar.Brand href="/" style={{display:'block',marginInline:'auto'}}>
             {/* <a href="index.html" class="logo align-items-center" style={{ textDecoration: 'none' }}> */}
-              <img src="../img/icon.png" alt="" style={{ height: 40, width: 40,marginInline:42 }} />
-              <br/>
-              <span className='logo-heading libero-font'>LIBERO HEALTH</span>
+              <img src="../img/icon.png" alt="" style={{ height: 40, width: 40,marginInline:'40%',marginBottom:10 }} />
+              <h4 className='logo-heading libero-font b'>LIBERO HEALTH</h4>
             {/* </a> */}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
