@@ -7,42 +7,21 @@ import { useEffect, useState } from "react"
 
 const Provider = () => {
     window.scrollTo(0, 0);
-   // const [scroll, setScroll] = useState(0);
-    // useEffect(() => {
-    //     window.addEventListener('scroll', function (e) {
-    //         setScroll(window.scrollY);
+    const [size, setSize] = useState(window.innerWidth)
 
-    //         //  document.getElementById('mvp').style.zIndex = 10000;
-    //         //   let scroll = window.scrollY
-    //         console.log(scroll);
-
-
-
-    //         // } else {
-
-    //         // }
-
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     if (scroll === 0) {
-    //         document.getElementById('mvp').classList.remove('animated_v');
-    //         document.getElementById('mvp').style.width = '100%';
-    //     }
-
-    //     if (scroll !== 0) {
-    //         document.getElementById('mvp').classList.add('animated_v');
-    //         document.getElementById('mvp').style.width = '25%';
-    //         document.getElementById('mvp').style.height = 400 + 'px';
-    //     }
-    // }, [scroll])
+    useEffect(() => {
+      let id = document?.getElementById('myVideo')?.play();
+      window.addEventListener('resize', (e) => {
+        console.log(e.currentTarget.innerWidth);
+        setSize(e.currentTarget.innerWidth)
+      });
+    }, [])
 
     return (<>
         
-        <Container style={{ marginTop: 150, marginBottom: 100 }}>
+        <Container style={{ marginTop: 20, marginBottom: 100 }}>
             <div class="shadow-none p-3 mb-5 bg-light rounded libero-font" >
-              
+            {size<991 &&<img src={require('../img/provider.jpg')} className="home_jpg" alt="" />}
                 <div class="p-3 mb-2 text-libero b">Provider</div>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
@@ -50,7 +29,8 @@ const Provider = () => {
                 passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
                 <iframe width="100%" height="300" id="mvp" style={{ width: '100%',height:400, zIndex: 10000 }}
-                    src="https://www.youtube.com/embed/tgbNymZ7vqY" >
+                    src="" >
+                       
                 </iframe>
                 <div className="libero-margin">
                     <Row >

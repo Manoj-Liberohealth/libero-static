@@ -1,21 +1,34 @@
+import { useEffect, useState } from "react";
 import { Accordion, Col, Container, Figure, Row } from "react-bootstrap";
 import Footer from "./Footer";
 
 const BusinessPartner = () => {
     window.scrollTo(0, 0);
+    const [size, setSize] = useState(window.innerWidth)
+
+    useEffect(() => {
+        // let id = document?.getElementById('myVideo')?.play();
+        window.addEventListener('resize', (e) => {
+             console.log(e.currentTarget.innerWidth);
+            setSize(e.currentTarget.innerWidth)
+        });
+    }, [])
     return (<>
-        <Container style={{ marginTop: 100 }}>
+        <Container style={{ marginTop: 20 }}>
 
             <div class="shadow-none p-3 mb-5 bg-light rounded libero-font">
-                <div class="p-3 mb-2 text-libero b">Partners</div>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                <iframe width="100%" height="300" id="mvp" style={{ width: '100%',height:400, zIndex: 10000 }}
-                    src="https://www.youtube.com/embed/tgbNymZ7vqY" >
+                {size < 991 && <img src={require('../img/Partnership.jpg')} className="home_jpg" alt="" />}
+                <div class="p-3 mb-2 text-libero b" >Partners</div>
+                <span className="text">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                    passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </span>
+                <iframe width="100%" height="300" id="mvp" style={{ width: '100%', height: 400, zIndex: 10000 }}
+                    src="" >
                 </iframe>
-               
+
                 <div className="libero-margin">
                     <Row >
                         <Col md={3}>

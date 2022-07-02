@@ -7,7 +7,7 @@ export default function Features() {
     <div>
         <section id="features" className="features">
           <div className="container" data-aos="fade-up">
-            <header className="section-header">
+            <header className="section-header" style={{paddingBottom:0}}>
               {/* <h2>Features</h2>  <FontAwesomeIcon icon={["far", "coffee"]} /> */}
               <p>Our offerings</p>
             </header>

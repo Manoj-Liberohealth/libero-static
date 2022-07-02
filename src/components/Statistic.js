@@ -34,7 +34,7 @@ const Statistic = (props) => {
                             <i class="fa fa-user-md fa-2x stats-icon"></i>
                             <h4 class="timer count-title count-number">1200+</h4>
                             <div class="stats-line-black"></div>
-                            <p class="stats-text">Doctors</p>
+                            <p class="stats-text">HealthCare Providers</p>
                         </div>
                     </div>
                 </div>
