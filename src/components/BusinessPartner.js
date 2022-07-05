@@ -17,7 +17,7 @@ const BusinessPartner = () => {
         <Container style={{ marginTop: 20 }}>
 
             <div class="shadow-none p-3 mb-5 bg-light rounded libero-font">
-                {size < 991 && <img src={require('../img/Partnership.jpg')} className="home_jpg" alt="" />}
+                {size < 991 && <img src={require('../img/partner.svg').default} className="home_jpg" alt="" />}
                 <div class="p-3 mb-2 text-libero b" >Partners</div>
                 <span className="text">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

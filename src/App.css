@@ -1089,3 +1089,10 @@ font-size: 14px;
   width: 90%;
   align-self: center;
 }
+.feature_svg_icon{
+
+  height: 40px;
+  width: 40px;
+  margin-inline-end: 15px;
+
+}

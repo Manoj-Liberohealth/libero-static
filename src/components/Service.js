@@ -19,7 +19,7 @@ const Service = () => {
     return (<>
         {/* <Navbar /> */}
         <Container style={{ marginTop: 20, marginBottom: 100 }}>
-        {size<991 &&<img src={require('../img/patient.jpg')} className="home_jpg" alt="" />}
+        {size<991 &&<img src={require('../img/happy patient 1.svg').default} className="home_jpg" alt="" />}
             <Row>
                 <Col md={8}>
                     <p style={{ fontSize: 15, fontFamily: "Montserrat" }}>
@@ -35,7 +35,7 @@ const Service = () => {
                 </Col>
                 <Col md={4}>
                     <img
-                        src="https://media-exp2.licdn.com/dms/image/C4D1BAQHtpb-POyxhEg/company-background_10000/0/1617126402893?e=2147483647&v=beta&t=91hKVcKv_TlRK7WaMT84VR0yzL228i1pTF4VeRyHUzc"
+                    src={require('../img/happy patient 1.svg').default}
                         class="img-fluid" alt="Responsive image" />
                 </Col>
             </Row>

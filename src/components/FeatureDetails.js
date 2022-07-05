@@ -3,12 +3,13 @@ import Footer from "./Footer";
 
 
 const FeatureDetails = () => {
-
+    window.scrollTo(0, 0);
+    
     return (<>
         <Container style={{ marginTop: 150, marginBottom: 100 }}>
             <div class="shadow-none p-3 mb-5 bg-light rounded libero-font" >
                 <iframe width="100%" height="300" id="mvp" style={{ width: '100%', height: 400, zIndex: 10000 }}
-                    src="https://www.youtube.com/embed/tgbNymZ7vqY" >
+                    src="" >
                 </iframe>
                 <div class="p-3 mb-2 text-libero b libero-margin">Appointments</div>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

@@ -19,7 +19,8 @@ export default function Features() {
                 <div className="col-xl-8 d-flex content">
                   <div className="row align-self-center gy-4 mr-2">
                     <div className="col-md-6 icon-box" data-aos="fade-up">
-                      <i className="fa-solid fa-calendar-check" />
+                      {/* <i className="fa-solid fa-calendar-check" /> */}
+                      <img src={require('../img/feature/f1.svg').default} id="features" className="feature_svg_icon" alt="" />
                       <div>
                         <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Appointments</h4></Link>
                         
@@ -27,7 +28,9 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={100}>
-                      <i className="fa-solid fa-file-medical" />
+                      {/* <i className="fa-solid fa-file-medical" /> */}
+                      <img src={require('../img/feature/f5.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Electronic Health Record</h4></Link>
                         <p>
@@ -37,14 +40,18 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={200}>
-                      <i className="fa-solid fa-bell" />
+                      {/* <i className="fa-solid fa-bell" /> */}
+                      <img src={require('../img/feature/f2.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Reminders</h4></Link>
                         <p>Get Regular reminders</p>
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={300}>
-                      <i className="fa-solid fa-chart-line" />
+                      {/* <i className="fa-solid fa-chart-line" /> */}
+                      <img src={require('../img/feature/f6.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Real Time Dashboard</h4></Link>
                         <p>
@@ -53,7 +60,9 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={400}>
-                      <i className="fa-solid fa-car" />
+                      {/* <i className="fa-solid fa-car" /> */}
+                      <img src={require('../img/feature/f3.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Non-emergency Transport</h4></Link>
                         <p>
@@ -62,7 +71,9 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={400}>
-                      <i className="fa-solid fa-laptop-medical" />
+                      {/* <i className="fa-solid fa-laptop-medical" /> */}
+                      <img src={require('../img/feature/f7.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Telehealth</h4></Link>
                         <p>
@@ -71,7 +82,9 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={400}>
-                      <i className="fa-solid fa-money-check-dollar" />
+                      {/* <i className="fa-solid fa-money-check-dollar" /> */}
+                      <img src={require('../img/feature/f4.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Seamless Payments</h4></Link>
                         <p>
@@ -80,7 +93,9 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="col-md-6 icon-box" data-aos="fade-up" data-aos-delay={500}>
-                      <i className="fa-solid fa-hospital" />
+                      {/* <i className="fa-solid fa-hospital" /> */}
+                      <img src={require('../img/feature/f8.svg').default} id="features" className="feature_svg_icon" alt="" />
+
                       <div>
                       <Link to="/feature-details" style={{textDecorationLine:'none'}}><h4>Accomodation</h4></Link>
                         <p>

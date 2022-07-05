@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import Statistic from './Statistic'
 
 export default function Hero() {
-
+  window.scrollTo(0, 0);
   const [size, setSize] = useState(window.innerWidth)
 
   useEffect(() => {
