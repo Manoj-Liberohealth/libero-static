@@ -6,6 +6,6 @@ import {BrowserRouter} from 'react-router-dom'
 Modal.setAppElement("#root");
 
 ReactDOM.render(
-  <BrowserRouter><App /></BrowserRouter>,
+  <BrowserRouter basename="/"><App /></BrowserRouter>,
   document.getElementById("root")
 );
