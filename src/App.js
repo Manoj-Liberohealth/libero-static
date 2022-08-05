@@ -37,6 +37,7 @@ export default function App() {
           <Route path="/business-partner" element={<Business />} />
           <Route path="/healthcare-provider" element={<Provider />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/*" element={<LandingPage />} />
           {/* <Route path="/contact" element={<ContactUs/>} /> */}
         </Routes>
       </ScrollToTop>
