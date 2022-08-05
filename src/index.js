@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import Modal from "react-modal";
-import {BrowserRouter,Router} from 'react-router-dom'
+import {BrowserRouter,HashRouter} from 'react-router-dom'
 Modal.setAppElement("#root");
 
 ReactDOM.render(
-  <BrowserRouter ><App /></BrowserRouter>,
+  <HashRouter ><App /></HashRouter>,
   document.getElementById("root")
 );
