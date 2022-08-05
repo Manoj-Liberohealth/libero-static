@@ -12,16 +12,11 @@ import TeamCardGrid from "components/cards/ProfileThreeColGrid.js";
 import SupportIconImage from "images/icons/support.svg";
 import ShieldIconImage from "images/icons/strong-team.svg";
 import CustomerLoveIconImage from "images/icons/satisfaction.svg";
-import { useNavigate } from "react-router-dom";
 
 const Subheading = tw.span`uppercase tracking-wider text-sm`;
 
 export default () => {
-  const navigate = useNavigate();
 
-  const refreshPage = () => {
-      navigate(0);
-  }
   return (
     <AnimationRevealPage>
       <Header />
