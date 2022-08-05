@@ -10,6 +10,6 @@ const hist = createBrowserHistory({ window });
 
 
 ReactDOM.render(
-  <HistoryRouter history={hist}><App /></HistoryRouter>,
+  <HashRouter><App /></HashRouter>,
   document.getElementById("root")
 );
