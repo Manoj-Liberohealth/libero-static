@@ -1,163 +1,152 @@
-import React from 'react'
-import GLightbox from 'glightbox';
+import "slick-carousel/slick/slick.css";
+import React, { useState } from "react";
+import Slider from "react-slick";
+import tw from "twin.macro";
+import styled from "styled-components";
+import { css } from "styled-components/macro"; //eslint-disable-line
+import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
+import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
+import loveIllustrationImageSrc from "images/happy-clients.svg";
+import { ReactComponent as StarIconBase } from "images/star-icon.svg";
+import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg";
+import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
 
-export default function Testimonial() {
+const Row = tw.div`flex flex-col md:flex-row justify-between items-center`;
+const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
+const ImageColumn = tw(Column)`md:w-5/12 xl:w-6/12 flex-shrink-0 relative`;
+const TextColumn = styled(Column)(props => [
+  tw`md:w-7/12 xl:w-6/12 mt-16 md:mt-0`,
+  props.textOnLeft ? tw`md:pr-12 lg:pr-16 md:order-first` : tw`md:pl-12 lg:pl-16 md:order-last`
+]);
 
+const Image = styled.img(props => [
+  props.imageRounded && tw`rounded`,
+  props.imageBorder && tw`border`,
+  props.imageShadow && tw`shadow`
+]);
 
+const Subheading = tw(SubheadingBase)`text-center md:text-left`;
+const Heading = tw(
+  SectionHeading
+)`mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`;
+const Description = tw.p`mt-6 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100`;
+
+const TestimonialSlider = styled(Slider)`
+  ${tw`w-full mt-10 text-center md:text-left`}
+  .slick-track {
+    ${tw`flex`}
+  }
+  .slick-slide {
+    ${tw`h-auto flex justify-center mb-1`}
+  }
+`;
+
+const Testimonial = tw.div`outline-none h-full flex! flex-col`;
+const StarsContainer = styled.div``;
+const StarIcon = tw(StarIconBase)`inline-block w-5 h-5 text-orange-400 fill-current mr-1 last:mr-0`;
+const TestimonialHeading = tw.div`mt-4 text-xl font-bold`;
+const Quote = tw.blockquote`mt-4 mb-8 sm:mb-10 leading-relaxed font-medium text-gray-700`;
+
+const CustomerInfoAndControlsContainer = tw.div`mt-auto flex justify-between items-center flex-col sm:flex-row`;
+
+const CustomerInfo = tw.div`flex flex-col sm:flex-row items-center justify-center lg:justify-start`;
+const CustomerProfilePicture = tw.img`rounded-full w-16 h-16 sm:w-20 sm:h-20`;
+const CustomerTextInfo = tw.div`text-center md:text-left sm:ml-6 mt-2 sm:mt-0`;
+const CustomerName = tw.h5`font-bold text-xl`;
+const CustomerTitle = tw.p`font-medium text-secondary-100`;
+
+const Controls = styled.div`
+  ${tw`flex mt-8 sm:mt-0`}
+  .divider {
+    ${tw`my-3 border-r`}
+  }
+`;
+const ControlButton = styled.button`
+  ${tw`mx-3 p-4 rounded-full transition duration-300 bg-gray-200 hover:bg-gray-300 text-primary-500 hover:text-primary-700 focus:outline-none focus:shadow-outline`}
+  svg {
+    ${tw`w-4 h-4 stroke-3`}
+  }
+`;
+
+export default ({
+  imageSrc = loveIllustrationImageSrc,
+  imageRounded = true,
+  imageBorder = false,
+  imageShadow = false,
+  subheading = "Testimonials",
+  heading = "Here’s what our stakeholders have to say",
+  description = "At Libero health, we believe that, “Customers who are satisfied by our service, will market us better than any other strategies!” We have been catering to the needs of over 10,000 patients already and they love us!",
+  textOnLeft = false,
+  testimonials = [
+    {
+      stars: 5,
+      profileImageSrc:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
+      heading: "Amazing User Experience",
+      quote:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+      customerName: "Charlotte Hale",
+      customerTitle: "CEO, Delos Inc."
+    },
+    {
+      stars: 5,
+      profileImageSrc:
+        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
+      heading: "Love the Developer Experience and Design Principles !",
+      quote:
+        "Sinor Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      customerName: "Adam Cuppy",
+      customerTitle: "Founder, EventsNYC"
+    }
+  ]
+}) => {
+  const [sliderRef, setSliderRef] = useState(null);
 
   return (
-    // <div>
-     
-    //     {/* <section id="testimonials" className="testimonials">
-    //     <div className="container" data-aos="fade-up">
-    //       <header className="section-header">
-    //         <h2>Testimonials</h2>
-    //         <p>What they are saying about us</p>
-    //       </header>
-    //       <div className="testimonials-slider swiper" data-aos="fade-up" data-aos-delay={200}>
-    //         <div className="swiper-wrapper">
-    //           <div className="swiper-slide">
-    //             <div className="testimonial-item">
-    //               <div className="stars">
-    //                 <i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" />
-    //               </div>
-    //               <p>
-    //                 Proin iaculis purus consequat sem cure digni ssim donec
-    //                 porttitora entum suscipit rhoncus. Accusantium quam,
-    //                 ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-    //                 risus at semper.
-    //               </p>
-    //               <div className="profile mt-auto">
-    //                 <img src="img/testimonials/testimonials-1.jpg" className="testimonial-img" alt="" />
-    //                 <h3>Saul Goodman</h3>
-    //                 <h4>Ceo &amp; Founder</h4>
-    //               </div>
-    //             </div>
-    //           </div>
-    //           {/* End testimonial item */}
-    //           <div className="swiper-slide">
-    //             <div className="testimonial-item">
-    //               <div className="stars">
-    //                 <i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" />
-    //               </div>
-    //               <p>
-    //                 Export tempor illum tamen malis malis eram quae irure esse
-    //                 labore quem cillum quid cillum eram malis quorum velit fore
-    //                 eram velit sunt aliqua noster fugiat irure amet legam anim
-    //                 culpa.
-    //               </p>
-    //               <div className="profile mt-auto">
-    //                 <img src="img/testimonials/testimonials-2.jpg" className="testimonial-img" alt="" />
-    //                 <h3>Sara Wilsson</h3>
-    //                 <h4>Designer</h4>
-    //               </div>
-    //             </div>
-    //           </div>
-    //           {/* End testimonial item */}
-    //           <div className="swiper-slide">
-    //             <div className="testimonial-item">
-    //               <div className="stars">
-    //                 <i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" />
-    //               </div>
-    //               <p>
-    //                 Enim nisi quem export duis labore cillum quae magna enim
-    //                 sint quorum nulla quem veniam duis minim tempor labore quem
-    //                 eram duis noster aute amet eram fore quis sint minim.
-    //               </p>
-    //               <div className="profile mt-auto">
-    //                 <img src="img/testimonials/testimonials-3.jpg" className="testimonial-img" alt="" />
-    //                 <h3>Jena Karlis</h3>
-    //                 <h4>Store Owner</h4>
-    //               </div>
-    //             </div>
-    //           </div>
-    //           {/* End testimonial item */}
-    //           <div className="swiper-slide">
-    //             <div className="testimonial-item">
-    //               <div className="stars">
-    //                 <i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" />
-    //               </div>
-    //               <p>
-    //                 Fugiat enim eram quae cillum dolore dolor amet nulla culpa
-    //                 multos export minim fugiat minim velit minim dolor enim duis
-    //                 veniam ipsum anim magna sunt elit fore quem dolore labore
-    //                 illum veniam.
-    //               </p>
-    //               <div className="profile mt-auto">
-    //                 <img src="img/testimonials/testimonials-4.jpg" className="testimonial-img" alt="" />
-    //                 <h3>Matt Brandon</h3>
-    //                 <h4>Freelancer</h4>
-    //               </div>
-    //             </div>
-    //           </div>
-    //           {/* End testimonial item */}
-    //           <div className="swiper-slide">
-    //             <div className="testimonial-item">
-    //               <div className="stars">
-    //                 <i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" /><i className="bi bi-star-fill" />
-    //               </div>
-    //               <p>
-    //                 Quis quorum aliqua sint quem legam fore sunt eram irure
-    //                 aliqua veniam tempor noster veniam enim culpa labore duis
-    //                 sunt culpa nulla illum cillum fugiat legam esse veniam culpa
-    //                 fore nisi cillum quid.
-    //               </p>
-    //               <div className="profile mt-auto">
-    //                 <img src="img/testimonials/testimonials-5.jpg" className="testimonial-img" alt="" />
-    //                 <h3>John Larson</h3>
-    //                 <h4>Entrepreneur</h4>
-    //               </div>
-    //             </div>
-    //           </div>
-    //           {/* End testimonial item */}
-    //         </div>
-    //         <div className="swiper-pagination" />
-    //       </div>
-    //     </div>
-    //   </section>
-    //   {/* End Testimonials Section */}
-    // </div> 
-    <section className="section" id="testi">
-    <div className="container">
-        <div className="row mb-5">
-            <div className="col-lg-8 offset-lg-2">
-            <header className="section-header">
-            <h2>Testimonials</h2>
-            <p>What they are saying about us</p>
-          </header>
-                <p className="section-subtitle text-muted text-center font-secondary padding-t-30">The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli.</p>
-            </div>
-        </div>
-        <div className="row margin-t-50 margin-b-50">
-            <div className="col-lg-4">
-                <div className="testimonial-box hover-effect margin-t-30 margin-b-50" style={{marginBottom:50}}>
-                    <img src="../img/testimonials/user-2.jpg" alt="" className="img-fluid d-block img-thumbnail rounded-circle" />
-                    <div className="testimonial-decs">
-                        <p className="text-muted text-center mb-0">“I feel confident imposing change on myself. It's a lot more fun progressing than looking back. That's why I need to throw curve balls.” </p>
-                    </div>
-                    <h5 className="text-center text-uppercase padding-t-15 mt-1"><b>Ruben Reed</b> - <span className="text-muted text-capitalize">Charleston</span></h5>
-                </div>
-            </div>
-            <div className="col-lg-4">
-                <div className="testimonial-box hover-effect margin-t-30 margin-b-50" style={{marginBottom:50}}>
-                    <img src="../img/testimonials/user-1.jpg" alt="" className="img-fluid d-block img-thumbnail rounded-circle" />
-                    <div className="testimonial-decs">
-                        <p className="text-muted text-center mb-0">“Our task must be to free ourselves by widening our circle of compassion to embrace all living creatures and the whole of nature and its beauty.” </p>
-                    </div>
-                    <h5 className="text-center text-uppercase padding-t-15 mt-1"><b>Michael P. Howlett</b> - <span className="text-muted text-capitalize">Worcester</span></h5>
-                </div>
-            </div>
-            <div className="col-lg-4">
-                <div className="testimonial-box hover-effect margin-t-30 margin-b-50" style={{marginBottom:50}}>
-                    <img src="../img/testimonials/user-3.jpg" alt="" className="img-fluid d-block img-thumbnail rounded-circle" />
-                    <div className="testimonial-decs">
-                        <p className="text-muted text-center mb-0">“I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.” </p>
-                    </div>
-                    <h5 className="text-center text-uppercase padding-t-15 mt-1"><b>Theresa D. Sinclair</b> - <span className="text-muted text-capitalize">Lynchburg</span></h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-  )
-}
+    <Container>
+      <ContentWithPaddingXl>
+        <Row>
+          <ImageColumn>
+            <Image src={imageSrc} imageBorder={imageBorder} imageShadow={imageShadow} imageRounded={imageRounded} />
+          </ImageColumn>
+          <TextColumn textOnLeft={textOnLeft}>
+            <Subheading>{subheading}</Subheading>
+            <Heading>{heading}</Heading>
+            <Description>{description}</Description>
+            <TestimonialSlider arrows={false} ref={setSliderRef}>
+              {testimonials.map((testimonial, index) => (
+                <Testimonial key={index}>
+                  <StarsContainer>
+                    {Array.from({ length: testimonial.stars }).map((_,indexIcon) => (
+                      <StarIcon key={indexIcon} />
+                    ))}
+                  </StarsContainer>
+                  <TestimonialHeading>{testimonial.heading}</TestimonialHeading>
+                  <Quote>{testimonial.quote}</Quote>
+                  <CustomerInfoAndControlsContainer>
+                    <CustomerInfo>
+                      <CustomerProfilePicture src={testimonial.profileImageSrc} alt={testimonial.customerName} />
+                      <CustomerTextInfo>
+                        <CustomerName>{testimonial.customerName}</CustomerName>
+                        <CustomerTitle>{testimonial.customerTitle}</CustomerTitle>
+                      </CustomerTextInfo>
+                    </CustomerInfo>
+                    <Controls>
+                      <ControlButton onClick={sliderRef?.slickPrev}>
+                        <ArrowLeftIcon />
+                      </ControlButton>
+                      <div className="divider" />
+                      <ControlButton onClick={sliderRef?.slickNext}>
+                        <ArrowRightIcon />
+                      </ControlButton>
+                    </Controls>
+                  </CustomerInfoAndControlsContainer>
+                </Testimonial>
+              ))}
+            </TestimonialSlider>
+          </TextColumn>
+        </Row>
+      </ContentWithPaddingXl>
+    </Container>
+  );
+};

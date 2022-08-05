@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "sku": {
+            "type": "string"
+        },
+        "skucode": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "resourceId": "[resourceId('Microsoft.Web/staticSites/', parameters('name'))]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2021-01-01",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/staticSites",
+            "location": "[parameters('location')]",
+            "tags": null,
+            "properties": {},
+            "sku": {
+                "Tier": "[parameters('sku')]",
+                "Name": "[parameters('skuCode')]"
+            }
+        }
+    ],
+    "outputs": {
+        "deploymentToken": {
+            "type": "string",
+            "value": "[listSecrets(variables('resourceId'), '2019-08-01').properties.apiKey]"
+        }
+    }
+}

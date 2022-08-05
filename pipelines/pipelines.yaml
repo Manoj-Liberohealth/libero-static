@@ -1,0 +1,74 @@
+name: $(Date:yyyyMMdd).$(Rev:r)
+
+# Pipeline is run on commits, tags PRs and master and dev branch
+trigger:
+  branches:
+    include:
+    - main
+
+# Run pipeline whenever a PR is raised
+pr:
+  branches:
+    include:
+    - '*'
+
+  paths:
+    exclude:
+     - .github
+     - .vscode
+     - ReadME.md
+
+stages:
+  - stage: Build
+    jobs:
+    - job: 'Build'
+      pool:
+        vmImage: 'windows-latest'
+      steps:
+      - template: 'templates/build.yaml'
+
+  - stage: DEV
+    displayName: 'Deploy to DEV environment'
+    jobs:
+    - deployment: InfrastructureandRBAC
+      pool:               
+        name: 'Azure Pipelines'
+        vmImage: 'windows-latest'
+      displayName: 'Provision Infrastructure and RBAC'
+      environment: dev
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: 'templates/deployInfra.yaml'
+              parameters:
+                environment: 'dev'
+                resourceServiceConnectionName: 'liberohealth-australia-nonprod-contributor'
+                resourceGroupName: 'lbh-website-web-dev-rg'
+                location: 'australiasoutheast'
+                templateStorageAccountName: 'lbhsharednonprodstrg'
+                templateParameterFile: 'parameters.dev.json'
+
+    - deployment: CodeDeployment
+      dependsOn: InfrastructureandRBAC
+      pool:               
+        name: 'Azure Pipelines'
+        vmImage: 'ubuntu-latest'
+      displayName: 'Deploy Code'
+      variables:
+      - group: LiberoHealth.StaticWebPage
+      environment: dev
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: 'templates/deploySpa.yaml'
+              parameters:
+                environment: 'dev'
+                resourceServiceConnectionName: 'liberohealth-australia-nonprod-contributor'
+                resourceGroupName: 'lbh-website-web-dev-rg'
+                location: 'australiasoutheast'
+                templateStorageAccountName: 'lbhsharednonprodstrg'
+                templateParameterFile: 'parameters.dev.json'
+                webAppName: 'liberohealth-website-mel-dev-web'
+                deploymentToken: '$(deploy_token_dev)'

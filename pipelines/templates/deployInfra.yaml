@@ -1,0 +1,59 @@
+parameters:
+- name: environment
+  type: string
+  
+- name: resourceServiceConnectionName
+  type: string
+
+- name: resourceGroupName
+  type: string
+
+- name: location
+  type: string
+
+- name: templateStorageAccountName
+  type: string
+
+- name: templateParameterFile
+  type: string
+
+steps:
+    
+- task: AzureFileCopy@3
+  condition: or(eq(variables['infraDeployment'],'true'), eq(variables['devOpsDebug'],'true'), eq('${{parameters.environment}}','prod'))
+  displayName: 'Copy ARM templates to the storage account'
+  inputs:
+    SourcePath: '$(Pipeline.Workspace)/ARM'
+    azureSubscription: '${{parameters.resourceServiceConnectionName}}'
+    Destination: 'AzureBlob'
+    storage: '${{parameters.templateStorageAccountName}}'
+    ContainerName: 'staticapp${{ parameters.environment }}$(Build.BuildId)'
+    outputStorageUri: 'StorageUri'
+    outputStorageContainerSasToken: 'SasToken'
+    sasTokenTimeOutInMinutes: '30'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  condition: or(eq(variables['infraDeployment'],'true'), eq(variables['devOpsDebug'],'true'), eq('${{parameters.environment}}','prod'))
+  displayName: 'Deploy ARM template'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: '${{ parameters.resourceServiceConnectionName }}'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '${{ parameters.resourceGroupName }}'
+    location: '${{ parameters.location }}'
+    templateLocation: 'URL of the file' 
+    deploymentMode: 'Incremental'
+    deploymentName: 'staticapp-deployment-${{parameters.environment}}'
+    csmFileLink: '$(StorageUri)component/azureDeploy.json$(SasToken)'
+    csmParametersFileLink: '$(StorageUri)component/${{parameters.templateParameterFile}}$(SasToken)'
+    deploymentOutputs: arm_output
+
+- task: AzureCLI@1
+  condition: or(eq(variables['infraDeployment'],'true'), eq(variables['devOpsDebug'],'true'), eq('${{parameters.environment}}','prod'))
+  displayName: 'Delete Temporary Blob Container'
+  inputs:
+    azureSubscription: '${{ parameters.resourceServiceConnectionName }}'
+    scriptType: 'pscore'
+    scriptLocation: inlineScript
+    inlineScript: 'az storage container delete --name staticapp${{ parameters.environment }}$(Build.BuildId) --account-name ${{parameters.templateStorageAccountName}} --auth-mode login'
+    failOnStandardError: true

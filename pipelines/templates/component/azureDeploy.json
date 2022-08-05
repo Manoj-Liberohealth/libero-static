@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.1",
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "skucode": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "templateBaseUrl": "[deployment().properties.templateLink.uri]",
+    "templateQueryString": "[concat('?', last(split(deployment().properties.templateLink.uri, '?')))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "spa-deployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(uri(variables('templateBaseUrl'), 'SPA/template.json'), variables('templateQueryString'))]",
+          "contentVersion": "1.0.0.1"
+        },
+        "parameters": {
+          "name": {
+            "value": "[parameters('name')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "sku": {
+            "value": "[parameters('sku')]"
+          },
+          "skucode": {
+            "value": "[parameters('skucode')]"
+          }
+        }
+      }
+    }
+  ]
+}
