@@ -3,7 +3,7 @@ import "styles/globalStyles.css";
 import React, { useEffect } from "react";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,HashRouter } from "react-router-dom";
 import LandingPage from "pages/LandingPage";
 import About from 'pages/AboutUs'
 import Contact from 'pages/ContactUs'
@@ -31,7 +31,7 @@ export default function App() {
         <meta name="keywords" content="Libero Health, Connected health platform, Patient centred; Patient centric, Patient centred connected health"/>
       </Helmet>
       <ScrollToTop>
-        <Routes>
+        <Routes >
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/business-partner" element={<Business />} />
